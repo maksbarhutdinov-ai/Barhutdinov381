@@ -3,773 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Русская медная компания | Главная</title>
-    <!-- Подключаем шрифты: Geometrica (аналог их фирменного шрифта) и Inter как основной -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* СБРОС И БАЗОВЫЕ СТИЛИ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: #1A1F2E;
-            line-height: 1.5;
-            overflow-x: hidden;
-        }
-
-        /* КОНТЕЙНЕР */
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 60px;
-        }
-
-        /* ФИРМЕННЫЙ ЦВЕТ РМК (медный/золотой) */
-        :root {
-            --rmk-gold: #B4975A;
-            --rmk-gold-light: #D4B87A;
-            --rmk-gold-dark: #8A7340;
-            --rmk-dark: #1A1F2E;
-            --rmk-gray: #F5F5F5;
-            --rmk-text: #333333;
-        }
-
-        /* ТИПОГРАФИКА */
-        h1, h2, h3 {
-            font-weight: 400;
-            letter-spacing: -0.02em;
-        }
-
-        .section-title {
-            font-size: 42px;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--rmk-dark);
-            font-weight: 300;
-        }
-
-        .section-title span {
-            font-weight: 600;
-            color: var(--rmk-gold);
-        }
-
-        /* ШАПКА */
-        header {
-            padding: 30px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            background: white;
-        }
-
-        .header-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        .logo-svg {
-            width: 60px;
-            height: 60px;
-            margin-right: 15px;
-        }
-
-        .logo-text {
-            font-size: 18px;
-            font-weight: 500;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--rmk-dark);
-        }
-
-        .logo-text strong {
-            font-weight: 700;
-            color: var(--rmk-gold);
-            display: block;
-            font-size: 24px;
-            letter-spacing: 2px;
-        }
-
-        nav {
-            display: flex;
-            gap: 40px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--rmk-dark);
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        nav a:after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--rmk-gold);
-            transition: 0.3s;
-        }
-
-        nav a:hover:after {
-            width: 100%;
-        }
-
-        .lang {
-            display: flex;
-            gap: 10px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .lang span {
-            cursor: pointer;
-            color: #999;
-        }
-
-        .lang span.active {
-            color: var(--rmk-gold);
-        }
-
-        /* ГЛАВНЫЙ ЭКРАН С ВАШИМ ИЗОБРАЖЕНИЕМ */
-        .hero {
-            display: flex;
-            align-items: center;
-            min-height: calc(100vh - 120px);
-            padding: 60px 0;
-            gap: 60px;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero-label {
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--rmk-gold);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .hero-title {
-            font-size: 64px;
-            line-height: 1.1;
-            font-weight: 300;
-            color: var(--rmk-dark);
-            margin-bottom: 25px;
-        }
-
-        .hero-title strong {
-            font-weight: 600;
-            color: var(--rmk-gold);
-            display: block;
-        }
-
-        .hero-description {
-            font-size: 16px;
-            color: #666;
-            max-width: 500px;
-            margin-bottom: 40px;
-            line-height: 1.8;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 50px;
-            margin-bottom: 40px;
-        }
-
-        .stat-item {
-            border-left: 2px solid var(--rmk-gold);
-            padding-left: 15px;
-        }
-
-        .stat-number {
-            font-size: 32px;
-            font-weight: 600;
-            color: var(--rmk-dark);
-            line-height: 1.2;
-        }
-
-        .stat-text {
-            font-size: 14px;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-        }
-
-        .btn {
-            padding: 16px 40px;
-            font-size: 14px;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-decoration: none;
-            transition: 0.3s;
-            display: inline-block;
-            border: none;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--rmk-gold);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background: var(--rmk-gold-dark);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--rmk-dark);
-            border: 1px solid var(--rmk-gold);
-        }
-
-        .btn-outline:hover {
-            background: var(--rmk-gold);
-            color: white;
-        }
-
-        /* ВАША ФОТОГРАФИЯ - в точности как на сайте РМК */
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .image-wrapper {
-            position: relative;
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-        }
-
-        /* ВАШЕ ИЗОБРАЖЕНИЕ */
-        .main-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: grayscale(20%);
-            transition: 1s;
-        }
-
-        .image-wrapper:hover .main-image {
-            transform: scale(1.02);
-            filter: grayscale(0%);
-        }
-
-        /* Декоративный элемент как на сайте РМК */
-        .image-accent {
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            width: 200px;
-            height: 200px;
-            background: var(--rmk-gold);
-            opacity: 0.1;
-            z-index: -1;
-        }
-
-        .image-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: white;
-            padding: 10px 20px;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--rmk-gold);
-            font-weight: 600;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        /* БЛОК С ДОВЕРИЕМ */
-        .trust-bar {
-            background: var(--rmk-gray);
-            padding: 30px 0;
-            margin-top: 40px;
-        }
-
-        .trust-items {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .trust-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .trust-icon {
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--rmk-gold);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--rmk-gold);
-            font-weight: 300;
-            font-size: 24px;
-        }
-
-        .trust-text {
-            font-size: 14px;
-            color: var(--rmk-dark);
-            font-weight: 500;
-        }
-
-        /* ОСНОВНОЙ КОНТЕНТ */
-        .about-section {
-            padding: 100px 0;
-            display: flex;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text p {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-
-        .about-link {
-            color: var(--rmk-gold);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .about-link:after {
-            content: '→';
-            font-size: 20px;
-        }
-
-        .about-grid {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .grid-item {
-            border-bottom: 2px solid var(--rmk-gold);
-            padding-bottom: 20px;
-        }
-
-        .grid-number {
-            font-size: 48px;
-            font-weight: 200;
-            color: var(--rmk-gold);
-            margin-bottom: 10px;
-        }
-
-        .grid-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--rmk-dark);
-        }
-
-        .grid-desc {
-            font-size: 14px;
-            color: #777;
-            line-height: 1.6;
-        }
-
-        /* НОВОСТИ */
-        .news-section {
-            padding: 80px 0;
-            background: var(--rmk-gray);
-        }
-
-        .news-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 50px;
-        }
-
-        .news-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .news-card {
-            background: white;
-            padding: 30px;
-            transition: 0.3s;
-            border-bottom: 3px solid transparent;
-        }
-
-        .news-card:hover {
-            border-bottom-color: var(--rmk-gold);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .news-date {
-            font-size: 12px;
-            color: var(--rmk-gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-        }
-
-        .news-title {
-            font-size: 20px;
-            font-weight: 500;
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .news-excerpt {
-            font-size: 14px;
-            color: #777;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .news-link {
-            color: var(--rmk-dark);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ФУТЕР */
-        footer {
-            background: var(--rmk-dark);
-            color: white;
-            padding: 60px 0 30px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 60px;
-            margin-bottom: 50px;
-        }
-
-        .footer-logo {
-            font-size: 24px;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-
-        .footer-logo strong {
-            color: var(--rmk-gold);
-            font-weight: 600;
-        }
-
-        .footer-about {
-            font-size: 14px;
-            color: #999;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .social-icon:hover {
-            border-color: var(--rmk-gold);
-            color: var(--rmk-gold);
-        }
-
-        .footer-title {
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 25px;
-            color: white;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 15px;
-        }
-
-        .footer-links a {
-            color: #999;
-            text-decoration: none;
-            font-size: 14px;
-            transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--rmk-gold);
-        }
-
-        .footer-contacts li {
-            color: #999;
-            font-size: 14px;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 10px;
-        }
-
-        .footer-contacts strong {
-            color: var(--rmk-gold);
-            font-weight: 500;
-            min-width: 80px;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 30px;
-            display: flex;
-            justify-content: space-between;
-            color: #666;
-            font-size: 12px;
-        }
-
-        /* АДАПТАЦИЯ */
-        @media (max-width: 1200px) {
-            .hero {
-                flex-direction: column;
-            }
-            .hero-title {
-                font-size: 48px;
-            }
-            .about-section {
-                flex-direction: column;
-            }
-            .news-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 30px;
-            }
-            nav {
-                display: none;
-            }
-            .news-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Русская медная компания | Инновации. Качество. Развитие</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- ШАПКА В ТОЧНОМ СООТВЕТСТВИИ С САЙТОМ РМК -->
+    <!-- Фоновый паттерн -->
+    <div class="bg-pattern"></div>
+
+    <!-- ШАПКА -->
     <header>
         <div class="container">
             <div class="header-inner">
                 <div class="logo">
-                    <div class="logo-svg">
-                        <!-- Стилизованный логотип в духе РМК -->
-                        <svg viewBox="0 0 60 60" fill="none">
-                            <rect x="10" y="10" width="40" height="40" stroke="#B4975A" stroke-width="2"/>
-                            <circle cx="30" cy="30" r="15" stroke="#B4975A" stroke-width="2"/>
-                            <line x1="15" y1="15" x2="45" y2="45" stroke="#B4975A" stroke-width="2"/>
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 70 70" fill="none">
+                            <path d="M35 5L60 20V50L35 65L10 50V20L35 5Z" stroke="#C5A059" stroke-width="2" fill="none"/>
+                            <path d="M35 15L50 25V45L35 55L20 45V25L35 15Z" stroke="#C5A059" stroke-width="2" fill="none"/>
+                            <circle cx="35" cy="35" r="10" stroke="#C5A059" stroke-width="2" fill="none"/>
                         </svg>
                     </div>
                     <div class="logo-text">
-                        <strong>РМК</strong>
-                        Русская медная компания
+                        <span class="top">Русская медная компания</span>
+                        <span class="main">РМК <span>— с 2004 года</span></span>
                     </div>
                 </div>
+                
                 <nav>
                     <a href="#">О компании</a>
                     <a href="#">Активы</a>
+                    <a href="#">Продукция</a>
                     <a href="#">Устойчивое развитие</a>
                     <a href="#">Карьера</a>
-                    <a href="#">Медиа</a>
                     <a href="#">Контакты</a>
                 </nav>
-                <div class="lang">
-                    <span class="active">RU</span>
-                    <span>EN</span>
+                
+                <div class="header-right">
+                    <div class="lang-switcher">
+                        <span class="active">RU</span>
+                        <span>EN</span>
+                    </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- ГЛАВНЫЙ ЭКРАН С ВАШИМ ИЗОБРАЖЕНИЕМ -->
+    <!-- ГЛАВНЫЙ ЭКРАН С ДВУМЯ ИЗОБРАЖЕНИЯМИ -->
     <section class="hero">
-        <div class="container" style="display: flex; gap: 60px; align-items: center;">
+        <div class="container">
             <div class="hero-content">
-                <div class="hero-label">Лидер медной отрасли</div>
-                <h1 class="hero-title">
-                    Технологии<br>
-                    <strong>будущего</strong>
-                </h1>
-                <p class="hero-description">
-                    Русская медная компания — динамично развивающийся вертикально-интегрированный холдинг, один из трех крупнейших производителей меди в России.
-                </p>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-number">350+</div>
-                        <div class="stat-text">тыс. тонн меди в год</div>
+                <div class="hero-left animate">
+                    <div class="hero-label">Лидер медной отрасли</div>
+                    <h1 class="hero-title">
+                        <span class="line1">Технологии</span>
+                        <span class="line2">будущего</span>
+                        <span class="line3">сегодня</span>
+                    </h1>
+                    <p class="hero-description">
+                        Русская медная компания — вертикально-интегрированный холдинг, 
+                        объединяющий полный цикл производства меди: от добычи руды до выпуска 
+                        готовой продукции высокого передела.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">350+</div>
+                            <div class="stat-text">тыс. тонн меди/год</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">10</div>
+                            <div class="stat-text">горнодобывающих предприятий</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">7 000+</div>
+                            <div class="stat-text">сотрудников</div>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                        <div class="stat-number">10</div>
-                        <div class="stat-text">горнодобывающих предприятий</div>
+                    
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary">Подробнее о компании</button>
+                        <button class="btn btn-outline">Наша продукция</button>
                     </div>
                 </div>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary">Подробнее</button>
-                    <button class="btn btn-outline">Продукция</button>
+                
+                <div class="hero-right animate">
+                    <div class="image-gallery">
+                        <!-- ОСНОВНОЕ ИЗОБРАЖЕНИЕ - rmk.jpg -->
+                        <div class="gallery-main">
+                            <img src="img/rmk.jpg" alt="Русская медная компания - производство" class="main-image">
+                            <div class="gallery-overlay"></div>
+                            <div class="gallery-badge">
+                                <span>Производственный комплекс</span> • Михеевский ГОК
+                            </div>
+                        </div>
+                        
+                        <!-- ВТОРОЕ ИЗОБРАЖЕНИЕ - rmk1.jpg (наложение) -->
+                        <div class="gallery-secondary">
+                            <img src="img/rmk1.jpg" alt="Русская медная компания - инновации">
+                            <div class="gallery-caption">
+                                Инновационные технологии
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="hero-image">
-                <div class="image-wrapper">
-                    <!-- ВАША ФОТОГРАФИЯ РМК -->
-                    <!-- ПУТЬ: папка img, файл rmk.jpg -->
-                    <img src="img/rmk.jpg" alt="Русская медная компания" class="main-image">
-                    <div class="image-caption">Производственный комплекс</div>
-                </div>
-                <div class="image-accent"></div>
             </div>
         </div>
     </section>
 
     <!-- БЛОК ДОВЕРИЯ -->
-    <div class="trust-bar">
+    <div class="trust-section">
         <div class="container">
-            <div class="trust-items">
-                <div class="trust-item">
-                    <div class="trust-icon">⚡</div>
-                    <div class="trust-text">Высокое качество продукции</div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="trust-icon">⚙️</div>
+                    <h3 class="trust-title">Полный цикл</h3>
+                    <p class="trust-text">От добычи руды до готовой продукции</p>
                 </div>
-                <div class="trust-item">
-                    <div class="trust-icon">🌍</div>
-                    <div class="trust-text">Экологическая ответственность</div>
+                <div class="trust-card">
+                    <div class="trust-icon">🌿</div>
+                    <h3 class="trust-title">Экологичность</h3>
+                    <p class="trust-text">Замкнутый цикл водоснабжения, современные фильтры</p>
                 </div>
-                <div class="trust-item">
+                <div class="trust-card">
                     <div class="trust-icon">🔬</div>
-                    <div class="trust-text">Инновационные технологии</div>
+                    <h3 class="trust-title">Инновации</h3>
+                    <p class="trust-text">Цифровизация и автоматизация процессов</p>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-icon">🏆</div>
+                    <h3 class="trust-title">Качество</h3>
+                    <p class="trust-text">Международные сертификаты ISO</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- О КОМПАНИИ -->
-    <section class="about-section container">
-        <div class="about-text">
-            <h2 class="section-title">
-                Русская медная компания —<br>
-                <span>новый стандарт</span> в металлургии
-            </h2>
-            <p>
-                Мы объединяем горнодобывающие, металлургические и сбытовые активы в единый технологический комплекс. Наша цель — создание максимальной ценности на каждом этапе производственной цепочки.
-            </p>
-            <p>
-                Инновационный подход к управлению, современное оборудование и высококвалифицированная команда позволяют нам выпускать продукцию, соответствующую самым строгим мировым стандартам.
-            </p>
-            <a href="#" class="about-link">Подробнее о компании</a>
+    <section class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <div class="section-subtitle">О компании</div>
+                    <h2 class="section-title">
+                        Русская медная компания —
+                        <span>новый стандарт металлургии</span>
+                    </h2>
+                    <div class="about-text">
+                        <p>
+                            РМК — динамично развивающийся холдинг, один из трех крупнейших производителей меди в России. 
+                            Мы объединяем горнодобывающие, металлургические и сбытовые активы в единый технологический комплекс.
+                        </p>
+                        <p>
+                            Наша стратегия основана на внедрении инновационных технологий, повышении эффективности производства 
+                            и строгом соблюдении экологических стандартов.
+                        </p>
+                    </div>
+                    
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">→</div>
+                            <div class="feature-text">
+                                <h4>Современное оборудование</h4>
+                                <p>Ведущие мировые производители</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">→</div>
+                            <div class="feature-text">
+                                <h4>Профессиональная команда</h4>
+                                <p>7000+ высококвалифицированных специалистов</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="about-link">Узнать больше о компании</a>
+                </div>
+                
+                <div class="about-numbers">
+                    <div class="number-card">
+                        <div class="number-value">№1</div>
+                        <div class="number-label">В Уральском регионе</div>
+                        <div class="number-desc">По объему производства меди</div>
+                    </div>
+                    <div class="number-card">
+                        <div class="number-value">10</div>
+                        <div class="number-label">ГОКов</div>
+                        <div class="number-desc">Горно-обогатительных комбинатов</div>
+                    </div>
+                    <div class="number-card">
+                        <div class="number-value">7</div>
+                        <div class="number-label">Регионов</div>
+                        <div class="number-desc">Присутствия в России</div>
+                    </div>
+                    <div class="number-card">
+                        <div class="number-value">100%</div>
+                        <div class="number-label">Глубокая переработка</div>
+                        <div class="number-desc">Собственное сырье</div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="about-grid">
-            <div class="grid-item">
-                <div class="grid-number">01</div>
-                <div class="grid-title">Глубокая переработка</div>
-                <div class="grid-desc">Собственная сырьевая база и современные обогатительные фабрики</div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-number">02</div>
-                <div class="grid-title">Экологичность</div>
-                <div class="grid-desc">Замкнутый цикл производства и снижение воздействия на окружающую среду</div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-number">03</div>
-                <div class="grid-title">Инновации</div>
-                <div class="grid-desc">Внедрение цифровых технологий и автоматизация процессов</div>
-            </div>
-            <div class="grid-item">
-                <div class="grid-number">04</div>
-                <div class="grid-title">Команда</div>
-                <div class="grid-desc">Более 7000 профессионалов, работающих на общий результат</div>
-            </div>
-        </div>
+        <div class="gold-line"></div>
     </section>
 
     <!-- НОВОСТИ -->
     <section class="news-section">
         <div class="container">
             <div class="news-header">
-                <h2 class="section-title">
-                    Пресс-<span>центр</span>
-                </h2>
+                <div>
+                    <div class="section-subtitle">Пресс-центр</div>
+                    <h2 class="section-title" style="margin-bottom: 0;">Последние <span>новости</span></h2>
+                </div>
                 <a href="#" class="about-link">Все новости</a>
             </div>
+            
             <div class="news-grid">
                 <div class="news-card">
-                    <div class="news-date">15 февраля 2026</div>
+                    <span class="news-date">15 февраля 2026</span>
                     <h3 class="news-title">РМК подтвердила международный сертификат ISO 14001</h3>
                     <p class="news-excerpt">Система экологического менеджмента компании признана соответствующей международным стандартам.</p>
-                    <a href="#" class="news-link">Читать далее</a>
+                    <a href="#" class="news-link">Читать далее →</a>
                 </div>
                 <div class="news-card">
-                    <div class="news-date">10 февраля 2026</div>
+                    <span class="news-date">10 февраля 2026</span>
                     <h3 class="news-title">Запуск новой линии на Михеевском ГОКе</h3>
                     <p class="news-excerpt">Производительность комбината увеличится на 15% благодаря модернизации оборудования.</p>
-                    <a href="#" class="news-link">Читать далее</a>
+                    <a href="#" class="news-link">Читать далее →</a>
                 </div>
                 <div class="news-card">
-                    <div class="news-date">5 февраля 2026</div>
+                    <span class="news-date">5 февраля 2026</span>
                     <h3 class="news-title">РМК вошла в топ-3 работодателей России</h3>
                     <p class="news-excerpt">По версии рейтинга Forbes компания признана одним из лучших работодателей в промышленном секторе.</p>
-                    <a href="#" class="news-link">Читать далее</a>
+                    <a href="#" class="news-link">Читать далее →</a>
                 </div>
             </div>
         </div>
@@ -780,19 +244,18 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-logo">
-                        <strong>РМК</strong> Русская медная компания
-                    </div>
+                    <div class="footer-logo">РМК <span>✦</span></div>
                     <p class="footer-about">
-                        Вертикально-интегрированный холдинг, один из лидеров российской медной отрасли.
+                        Русская медная компания — лидер медной отрасли России. Инновации, качество, ответственность.
                     </p>
                     <div class="footer-social">
-                        <a href="#" class="social-icon">in</a>
-                        <a href="#" class="social-icon">tg</a>
-                        <a href="#" class="social-icon">yt</a>
-                        <a href="#" class="social-icon">vk</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">tg</a>
+                        <a href="#" class="social-link">yt</a>
+                        <a href="#" class="social-link">vk</a>
                     </div>
                 </div>
+                
                 <div>
                     <h4 class="footer-title">Компания</h4>
                     <ul class="footer-links">
@@ -801,8 +264,10 @@
                         <li><a href="#">Руководство</a></li>
                         <li><a href="#">Стратегия</a></li>
                         <li><a href="#">Партнеры</a></li>
+                        <li><a href="#">Лицензии</a></li>
                     </ul>
                 </div>
+                
                 <div>
                     <h4 class="footer-title">Деятельность</h4>
                     <ul class="footer-links">
@@ -811,20 +276,37 @@
                         <li><a href="#">Технологии</a></li>
                         <li><a href="#">Экология</a></li>
                         <li><a href="#">Инвесторам</a></li>
+                        <li><a href="#">Закупки</a></li>
                     </ul>
                 </div>
+                
                 <div>
                     <h4 class="footer-title">Контакты</h4>
-                    <ul class="footer-contacts">
-                        <li><strong>Адрес:</strong> Челябинск, ул. Ленина, 65</li>
-                        <li><strong>Телефон:</strong> +7 (351) 111-11-11</li>
-                        <li><strong>Email:</strong> info@rmk.ru</li>
-                    </ul>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon">📍</span>
+                        <span>Челябинск, ул. Ленина, 65</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon">📞</span>
+                        <span>+7 (351) 111-11-11</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon">✉️</span>
+                        <span>info@rmk.ru</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <span class="footer-contact-icon">🕒</span>
+                        <span>Пн-Пт: 9:00 - 18:00</span>
+                    </div>
                 </div>
             </div>
+            
             <div class="footer-bottom">
-                <div>© 2004–2026 Русская медная компания</div>
-                <div>Все права защищены. Политика конфиденциальности</div>
+                <div>© 2004–2026 Русская медная компания. Все права защищены.</div>
+                <div>
+                    <a href="#">Политика конфиденциальности</a>
+                    <a href="#">Карта сайта</a>
+                </div>
             </div>
         </div>
     </footer>
